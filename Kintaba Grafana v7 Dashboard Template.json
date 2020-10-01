@@ -1,0 +1,742 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_KINTABA_GRAPHQL DATA SOURCE",
+      "label": "Kintaba GraphQL Data Source",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "kintaba-graphql-datasource",
+      "pluginName": "Kintaba GraphQL Data Source"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "7.0.5"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "kintaba-graphql-datasource",
+      "name": "Kintaba GraphQL Data Source",
+      "version": "1.1.2"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:584",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_KINTABA_GRAPHQL DATA SOURCE}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "constant": 6.5,
+          "dataPath": "report.groups",
+          "queryText": "query ReportIncident {\n    report(\n      criteria: {\n        startTime: $startTime\n        endTime: $endTime\n        resolution: WEEK\n        type: INCIDENT_STATUS\n        status: [CLOSED]\n      }\n    ) {\n      ... on IncidentStatusReport {\n        groups {\n          status\n          items {\n            Time:startInterval\n            Closed:count\n          }\n        }\n      }\n    }\n  }",
+          "refId": "A"
+        },
+        {
+          "constant": 6.5,
+          "dataPath": "report.groups",
+          "queryText": "query ReportIncident {\n    report(\n      criteria: {\n        startTime: $startTime\n        endTime: $endTime\n        resolution: WEEK\n        type: INCIDENT_STATUS\n        status: [OPEN]\n      }\n    ) {\n      ... on IncidentStatusReport {\n        groups {\n          status\n          items {\n            Time:startInterval\n            Open:count\n          }\n        }\n      }\n    }\n  }",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Incident Status",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:319",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:320",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_KINTABA_GRAPHQL DATA SOURCE}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "constant": 6.5,
+          "dataPath": "report.groups",
+          "queryText": "query ReportIncident {\n    report(\n      criteria: {\n        startTime: $startTime\n        endTime: $endTime\n        resolution: WEEK\n        type: INCIDENT_SEVERITY\n        status: [OPEN]\n        severity: [SEV1]\n      }\n    ) {\n      ... on IncidentSeverityReport {\n        groups {\n          severity\n          items {\n            Time:startInterval\n            SEV1:count\n          }\n        }\n      }\n    }\n  }",
+          "refId": "A"
+        },
+        {
+          "constant": 6.5,
+          "dataPath": "report.groups",
+          "queryText": "query ReportIncident {\n    report(\n      criteria: {\n        startTime: $startTime\n        endTime: $endTime\n        resolution: WEEK\n        type: INCIDENT_SEVERITY\n        status: [OPEN]\n        severity: [SEV2]\n      }\n    ) {\n      ... on IncidentSeverityReport {\n        groups {\n          severity\n          items {\n            Time:startInterval\n            SEV2:count\n          }\n        }\n      }\n    }\n  }",
+          "refId": "B"
+        },
+        {
+          "constant": 6.5,
+          "dataPath": "report.groups",
+          "queryText": "query ReportIncident {\n    report(\n      criteria: {\n        startTime: $startTime\n        endTime: $endTime\n        resolution: WEEK\n        type: INCIDENT_SEVERITY\n        status: [OPEN]\n        severity: [SEV3]\n      }\n    ) {\n      ... on IncidentSeverityReport {\n        groups {\n          severity\n          items {\n            Time:startInterval\n            SEV3:count\n          }\n        }\n      }\n    }\n  }",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Open Incidents by Severity",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:319",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:320",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_KINTABA_GRAPHQL DATA SOURCE}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "hiddenSeries": false,
+      "id": 9,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "constant": 6.5,
+          "dataPath": "report.groups",
+          "queryText": "query ReportIncident {\n    report(\n      criteria: {\n        startTime: $startTime\n        endTime: $endTime\n        resolution: WEEK\n        type: POSTMORTEM_STATUS\n        postmortemStatus: [DRAFT]\n      }\n    ) {\n      ... on PostmortemStatusReport {\n        groups {\n          postmortemStatus\n          items {\n            Time:startInterval\n            Draft:count\n          }\n        }\n      }\n    }\n  }",
+          "refId": "A"
+        },
+        {
+          "constant": 6.5,
+          "dataPath": "report.groups",
+          "queryText": "query ReportIncident {\n    report(\n      criteria: {\n        startTime: $startTime\n        endTime: $endTime\n        resolution: WEEK\n        type: POSTMORTEM_STATUS\n        postmortemStatus: [PUBLISHED]\n      }\n    ) {\n      ... on PostmortemStatusReport {\n        groups {\n          postmortemStatus\n          items {\n            Time:startInterval\n            Published:count\n          }\n        }\n      }\n    }\n  }",
+          "refId": "B"
+        },
+        {
+          "constant": 6.5,
+          "dataPath": "report.groups",
+          "queryText": "query ReportIncident {\n    report(\n      criteria: {\n        startTime: $startTime\n        endTime: $endTime\n        resolution: WEEK\n        type: POSTMORTEM_STATUS\n        postmortemStatus: [REVIEWED]\n      }\n    ) {\n      ... on PostmortemStatusReport {\n        groups {\n          postmortemStatus\n          items {\n            Time:startInterval\n            Reviewed:count\n          }\n        }\n      }\n    }\n  }",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Postmortem Status",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_KINTABA_GRAPHQL DATA SOURCE}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "hiddenSeries": false,
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "aliasBy": "",
+          "annotationTags": "",
+          "annotationText": "",
+          "annotationTitle": "",
+          "constant": 6.5,
+          "dataPath": "report",
+          "groupBy": "",
+          "queryText": "query ReportIncident {\n    report(\n      criteria: {\n        startTime: $startTime\n        endTime: $endTime\n        resolution: WEEK\n        type: INCIDENT_MITIGATION\n      }\n    ) {\n      ... on IncidentMitigationReport {\n        items {\n          Time:startInterval\n          Duration:timeToMitigation\n        }\n      }\n    }\n  }",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "MTTR",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:319",
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:320",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_KINTABA_GRAPHQL DATA SOURCE}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "$$hashKey": "object:589",
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 70,
+          "min": 1,
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 20
+              },
+              {
+                "color": "red",
+                "value": 52.5
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 2,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "constant": 6.5,
+          "dataPath": "viewer.company.incidents",
+          "queryText": "query ViewerCompanyList {\n  viewer {\n    company {\n      incidents(filter:{includeStatus: OPEN}) {\n        count\n      }\n    }\n  }\n}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Open Incidents",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_KINTABA_GRAPHQL DATA SOURCE}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "${__field.name}",
+          "mappings": [
+            {
+              "$$hashKey": "object:589",
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": ""
+            }
+          ],
+          "max": 70,
+          "min": 1,
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 10
+              },
+              {
+                "color": "red",
+                "value": 20
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 3,
+      "links": [],
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "constant": 6.5,
+          "dataPath": "viewer.company.incidents",
+          "queryText": "query ViewerCompanyList {\n  viewer {\n    company {\n      incidents(filter:{includeStatus: OPEN}) {\n        Open:count\n      }\n    }\n  }\n}",
+          "refId": "A"
+        },
+        {
+          "constant": 6.5,
+          "dataPath": "viewer.company.incidents",
+          "queryText": "query ViewerCompanyList {\n  viewer {\n    company {\n      incidents(filter:{includeStatus: CLOSED}) {\n        Closed:count\n      }\n    }\n  }\n}",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Open Incidents",
+      "type": "bargauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_KINTABA_GRAPHQL DATA SOURCE}",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "${__field.name}",
+          "mappings": [
+            {
+              "$$hashKey": "object:589",
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": ""
+            }
+          ],
+          "max": 5,
+          "min": 1,
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 3
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 25
+      },
+      "id": 4,
+      "links": [],
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.5",
+      "targets": [
+        {
+          "constant": 6.5,
+          "dataPath": "viewer.company.incidents",
+          "queryText": "query ViewerCompanyList {\n  viewer {\n    company {\n      incidents(filter:{includeStatus: OPEN, search: \"#infra\"}) {\n        Open:count\n      }\n    }\n  }\n}",
+          "refId": "A"
+        },
+        {
+          "constant": 6.5,
+          "dataPath": "viewer.company.incidents",
+          "queryText": "query ViewerCompanyList {\n  viewer {\n    company {\n      incidents(filter:{includeStatus: CLOSED, search: \"#infra\"}) {\n        Closed:count\n      }\n    }\n  }\n}",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "#Infra Incidents",
+      "type": "bargauge"
+    }
+  ],
+  "schemaVersion": 25,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Kintaba Dashboard Template",
+  "uid": "R00wepZZz",
+  "version": 2
+}
